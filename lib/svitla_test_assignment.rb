@@ -2,7 +2,7 @@ module SvitlaTestAssignment
 
   def self.group_by_date(events)
     raise TypeError, "events not injectable" unless events.respond_to?(:inject)
-    output = events.to_enum.inject({}) do |memo, original_item|
+    output = events.inject({}) do |memo, original_item|
       raise TypeError, "event item not a hash-like object" unless original_item.respond_to?(:delete)
       item = original_item.dup
       date = item.delete(:date) || item.delete('date')
